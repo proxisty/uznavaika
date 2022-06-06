@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+
+
+<!-- Header-->
+<header class="bg py-5" style="background: plum">
+    <div class="container px-5" >
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-dark mb-2">Центр подготовки и адаптации детей к школе "Узнавайка"</h1>
+                    <p class="lead fw-normal text-black-50 mb-4">Центр Лилии Олеговны, учителя начальных классов и методолога</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#lessons">Узнать о направлениях</a>
+                        <a class="btn btn-outline-light btn-lg px-4" href="{% url 'contact' %}">Обратная связь</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="{% static 'images/navbar600x400.png' %}" alt="..." /></div>
+        </div>
+    </div>
+</header>
+<!-- Features section-->
+<section class="py-5" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Почему нас выбирают?</h2></div>
+            <div class="col-lg-8">
+                <div class="row gx-5 row-cols-1 row-cols-md-2">
+                    <div class="col mb-5 h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                        <h2 class="h5">ВЫСОКИЙ УРОВЕНЬ КУЛЬТУРЫ В ДЕТСКОМ ЦЕНТРЕ</h2>
+                        <p class="mb-0"></p>
+                    </div>
+                    <div class="col mb-5 h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                        <h2 class="h5">ВЫСОКОПРОФЕССИОНАЛЬНЫХ ПЕДАГОГОВ</h2>
+                        <p class="mb-0"></p>
+                    </div>
+                    <div class="col mb-5 mb-md-0 h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="h5">КАЧЕСТВЕННЫЙ СЕРВИС</h2>
+                        <p class="mb-0"></p>
+                    </div>
+                    <div class="col h-100">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                        <h2 class="h5">СОБСТВЕННЫЕ ПРОГРАММЫ МЕЖДУНАРОДНОГО УРОВНЯ</h2>
+                        <p class="mb-0"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Список направлений -->
+<section class="py-5" id="lessons">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6">
+                <div class="text-center">
+                    <h2 class="fw-bolder">From our blog</h2>
+                    <p class="lead fw-normal text-muted mb-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque fugit ratione dicta mollitia. Officiis ad.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-5">
+            {% for lesson in lesson_list %}
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow border-0">
+                    <img class="card-img-top" src="{{ lesson.image.url }}" alt="..." />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Направление</div>
+                        <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">{{ lesson.title }}</h5></a>
+                        <p class="card-text mb-0">{{ lesson.description }}</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                <div class="small">
+                                    {% for teacher_name in lesson.teacher.all %}
+                                    <div class="fw-bold">{{ teacher_name }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Тарифные ставки -->
+<section class="bg-light py-5">
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <h1 class="fw-bolder">Цены за занятия</h1>
+            <p class="lead fw-normal text-muted mb-0">Наши тарифы прозрачны и просты</p>
+        </div>
+        <div class="row gx-5 justify-content-center" id="price">
+            <!-- Pricing card free-->
+            <div class="col-lg-6 col-xl-4">
+                <div class="card mb-5 mb-xl-0">
+                    <div class="card-body p-5">
+                        <div class="small text-uppercase fw-bold text-muted">Большой пакет занятий</div>
+                        <div class="mb-3">
+                            <span class="display-4 fw-bold">2 760</span>
+                            <span class="text-muted">/ 4 занятий</span>
+                        </div>
+                        <div class="d-grid"><a class="btn btn-outline-primary" href="{% url 'contact' %}">Заказать</a></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pricing card pro-->
+            <div class="col-lg-6 col-xl-4">
+                <div class="card mb-5 mb-xl-0">
+                    <div class="card-body p-5">
+                        <div class="small text-uppercase fw-bold">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            Малый пакет занятий
+                        </div>
+                        <div class="mb-3">
+                            <span class="display-4 fw-bold">4 720</span>
+                            <span class="text-muted">/ 8 занятия</span>
+                        </div>
+                        <div class="d-grid"><a class="btn btn-primary" href="{% url 'contact' %}">Заказать</a></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pricing card enterprise-->
+            <div class="col-lg-6 col-xl-4">
+                <div class="card">
+                    <div class="card-body p-5">
+                        <div class="small text-uppercase fw-bold text-muted">пакет на месяц</div>
+                        <div class="mb-3">
+                            <span class="display-4 fw-bold">12 000</span>
+                            <span class="text-muted">/ мини-сад</span>
+                        </div>
+                        <div class="d-grid"><a class="btn btn-outline-primary" href="{% url 'contact' %}">Заказать</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Список преподавателей -->
+<section class="py-5 bg-light" id="teachers">
+    <div class="container px-5 my-5">
+        <div class="text-center">
+            <h2 class="fw-bolder">Преподаватели</h2>
+            <p class="lead fw-normal text-muted mb-5"></p>
+        </div>
+        <div class="row gx-5 row-cols-1 row-cols-sm-2 row-cols-xl-4 justify-content-center">
+            {% for teacher in teacher_list %}
+            <div class="col mb-5 mb-5 mb-xl-0">
+                <div class="text-center">
+                    <img class="img-fluid rounded-circle mb-4 px-4" src="{{ teacher.image.url }}" alt="..." />
+                    <h5 class="fw-bolder">{{ teacher.name }}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+<!--Пример цикла-->
+
+
+
+
+<!--изначальный цикл-->
+<!--                        <div class="col-lg-4 mb-5">-->
+<!--                            <div class="card h-100 shadow border-0">-->
+<!--                                <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />-->
+<!--                                <div class="card-body p-4">-->
+<!--                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>-->
+<!--                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Blog post title</h5></a>-->
+<!--                                    <p class="card-text mb-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--                                </div>-->
+<!--                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">-->
+<!--                                    <div class="d-flex align-items-end justify-content-between">-->
+<!--                                        <div class="d-flex align-items-center">-->
+<!--                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />-->
+<!--                                            <div class="small">-->
+<!--                                                <div class="fw-bold">Kelly Rowan</div>-->
+<!--                                                <div class="text-muted">March 12, 2021 &middot; 6 min read</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-4 mb-5">-->
+<!--                            <div class="card h-100 shadow border-0">-->
+<!--                                <img class="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />-->
+<!--                                <div class="card-body p-4">-->
+<!--                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">Media</div>-->
+<!--                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">Another blog post title</h5></a>-->
+<!--                                    <p class="card-text mb-0">This text is a bit longer to illustrate the adaptive height of each card. Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--                                </div>-->
+<!--                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">-->
+<!--                                    <div class="d-flex align-items-end justify-content-between">-->
+<!--                                        <div class="d-flex align-items-center">-->
+<!--                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />-->
+<!--                                            <div class="small">-->
+<!--                                                <div class="fw-bold">Josiah Barclay</div>-->
+<!--                                                <div class="text-muted">March 23, 2021 &middot; 4 min read</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-4 mb-5">-->
+<!--                            <div class="card h-100 shadow border-0">-->
+<!--                                <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />-->
+<!--                                <div class="card-body p-4">-->
+<!--                                    <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>-->
+<!--                                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">The last blog post title is a little bit longer than the others</h5></a>-->
+<!--                                    <p class="card-text mb-0">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--                                </div>-->
+<!--                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">-->
+<!--                                    <div class="d-flex align-items-end justify-content-between">-->
+<!--                                        <div class="d-flex align-items-center">-->
+<!--                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />-->
+<!--                                            <div class="small">-->
+<!--                                                <div class="fw-bold">Evelyn Martinez</div>-->
+<!--                                                <div class="text-muted">April 2, 2021 &middot; 10 min read</div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
